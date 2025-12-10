@@ -1,0 +1,31 @@
+{
+    ["linux|x86_64"] = {
+        ["cmake#f56260b5"] = {
+            repo = {
+                branch = "master",
+                commit = "7f1a15f233762aea712a7de43193c118f7ba68ca",
+                url = "https://gitee.com/tboox/xmake-repo.git"
+            },
+            version = "4.2.0"
+        },
+        ["glslang#b5e7bab3"] = {
+            repo = {
+                branch = "master",
+                commit = "7f1a15f233762aea712a7de43193c118f7ba68ca",
+                url = "https://gitee.com/tboox/xmake-repo.git"
+            },
+            version = "16.1.0"
+        },
+        ["ninja#f56260b5"] = {
+            repo = {
+                branch = "master",
+                commit = "7f1a15f233762aea712a7de43193c118f7ba68ca",
+                url = "https://gitee.com/tboox/xmake-repo.git"
+            },
+            version = "1.10.1"
+        }
+    },
+    __meta__ = {
+        version = "1.0"
+    }
+}
