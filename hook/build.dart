@@ -35,12 +35,12 @@ Future<void> main(List<String> args) async {
         package: input.packageName,
         name: 'src/glslang_c_interface.g.dart',
         file: input.packageRoot
-            .resolveUri(.directory('src/dist/glslang/lib'))
+            .resolveUri(.directory('src/dist/glslang'))
             .resolve(switch (input.config.code.targetOS) {
-              .linux => 'libglslang.so',
-              .macOS => 'libglslang.dylib',
-              .windows => 'glslang.dll',
-              .android => 'libglslang.so',
+              .linux => 'lib/libglslang.so',
+              .macOS => 'lib/libglslang.dylib',
+              .windows => 'bin/glslang.dll',
+              .android => 'lib/libglslang.so',
               _ => throw UnsupportedError(
                 'Unsupported OS: ${input.config.code.targetOS}',
               ),
@@ -96,6 +96,18 @@ class XmakeBuilder {
     }
   }
 
+  Future<void> updateRepository() async {
+    // final result = await Process.run('xrepo', ['update-repo']);
+    // if (result.exitCode != 0) {
+    //   throw ProcessException(
+    //     'xrepo',
+    //     ['update-repo'],
+    //     'Failed to update repository with xrepo: ${result.stderr}',
+    //     result.exitCode,
+    //   );
+    // }
+  }
+
   Future<bool> isInstalled() async {
     return Directory.fromUri(checkoutDir).exists();
   }
@@ -105,6 +117,7 @@ class XmakeBuilder {
       _logger?.info('xmake project already built at $installDir');
       return;
     }
+    await updateRepository();
 
     _logger?.info('Building xmake project at $sourceDir');
     await buildDll();
