@@ -1,9 +1,9 @@
 add_rules("plugin.compile_commands.autoupdate",{outputdir =".vscode"})
 set_policy("package.requires_lock", true)
-add_requires("glslang", {configs = {shared = true, static = false}})
+add_requires("glslang", {system = false, configs = {shared = true, static = false}})
 
 
-target("dll")
+target("dart_dll")
     set_kind("binary")
     add_files("src/*.cpp")
     add_packages("glslang")
