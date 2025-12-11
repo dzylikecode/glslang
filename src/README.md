@@ -1,5 +1,5 @@
 ```bash
-xmake build -y dll
+xmake build -y dart_dll
 xmake install -y -o dist
 ```
 
