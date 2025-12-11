@@ -97,15 +97,21 @@ class XmakeBuilder {
   }
 
   Future<void> updateRepository() async {
-    // final result = await Process.run('xrepo', ['update-repo']);
-    // if (result.exitCode != 0) {
-    //   throw ProcessException(
-    //     'xrepo',
-    //     ['update-repo'],
-    //     'Failed to update repository with xrepo: ${result.stderr}',
-    //     result.exitCode,
-    //   );
-    // }
+    final result = await Process.run(
+      switch (Platform.operatingSystem) {
+        'windows' => 'xrepo.bat',
+        _ => 'xrepo',
+      },
+      ['update-repo'],
+    );
+    if (result.exitCode != 0) {
+      throw ProcessException(
+        'xrepo',
+        ['update-repo'],
+        'Failed to update repository with xrepo: ${result.stderr}',
+        result.exitCode,
+      );
+    }
   }
 
   Future<bool> isInstalled() async {
